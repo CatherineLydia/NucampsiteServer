@@ -39,7 +39,7 @@ exports.jwtPassport = passport.use(
 
 exports.verifyUser = passport.authenticate('jwt', { session: false });
 
-const verifyAdmin = function (req, res, next) {
+exports.verifyAdmin = function (req, res, next) {
     if (req.user.admin) {
         return next();
     } else {
@@ -50,4 +50,3 @@ const verifyAdmin = function (req, res, next) {
 }
 
     
-module.exports = verifyAdmin;

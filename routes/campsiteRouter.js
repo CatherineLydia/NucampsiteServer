@@ -169,7 +169,7 @@ campsiteRouter.route('/:campsiteId/comments/:commentId')
     Campsite.findById(req.params.campsiteId)
     .populate('comments.author')
     .then(campsite => {
-        if (req.user._id.equals(campsite.id)){
+        if ((campsite.comments.id(req.params.commentId).author._id).equals(req.user._id)){
             if (campsite && campsite.comments.id(req.params.commentId)) {
                 if (req.body.rating) {
                     campsite.comments.id(req.params.commentId).rating = req.body.rating;
@@ -205,7 +205,7 @@ campsiteRouter.route('/:campsiteId/comments/:commentId')
     Campsite.findById(req.params.campsiteId)
     .populate('comments.author')
     .then(campsite => {
-        if (req.user._id.equals(campsite.id)) {
+        if ((campsite.comments.id(req.params.commentId).author._id).equals(req.user._id)) {
             if (campsite && campsite.comments.id(req.params.commentId)) {
                 campsite.comments.id(req.params.commentId).remove();
                 campsite.save()
