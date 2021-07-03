@@ -8,7 +8,7 @@ const router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+    res.send('respond with a resource');
 });
 
 router.post('/signup', (req, res) => {
@@ -28,16 +28,16 @@ router.post('/signup', (req, res) => {
           user.lastname = req.body.lastname;
         }
         user.save(err => {
-          if (err) {
-            res.statusCode = 500;
-            res.setHeader('Content-Type', 'application/json');
-            res.json({ err: err });
-            return;
-          }
-          passport.authenticate('local')(req, res, () => {
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.json({ success: true, status: 'Registration Successful' });
+        if (err) {
+          res.statusCode = 500;
+          res.setHeader('Content-Type', 'application/json');
+          res.json({ err: err });
+          return;
+        }
+        passport.authenticate('local')(req, res, () => {
+          res.statusCode = 200;
+          res.setHeader('Content-Type', 'application/json');
+          res.json({ success: true, status: 'Registration Successful' });
           });
         });
       }
